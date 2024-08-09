@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'dancing': ['"Dancing Script"', 'cursive'],
+        'edu': ['"Edu AU VIC WA NT Hand"', 'cursive'],
+        'poppins': ['Poppins', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

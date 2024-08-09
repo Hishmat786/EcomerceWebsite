@@ -10,10 +10,11 @@ function Home() {
         <h1 className='text-5xl font-bold mb-1'>Special Summer</h1>
         <h1 className='text-5xl font-bold mb-4'>Collection</h1>
         <p className='text-xl font-light'>Best Collection Of 2024</p>
+        <button className='bg-gray-800 text-white mt-3 m-4 p-3 text-3xl rounded-3xl hover:bg-gray-600'>Shop Now</button>
         </div>
       </div>
       <div>
-        <img src="src/assets/sale.png" alt="" />
+        <img src="src/assets/sale.png" className='h-4/5' />
       </div>
        
     </div>

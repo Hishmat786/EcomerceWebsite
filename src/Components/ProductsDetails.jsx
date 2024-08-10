@@ -28,8 +28,9 @@ function ProductsDetails() {
             </div>
             <div className='flex flex-col gap-4 items-start p-3 h-64'>
               <h1 className='text-2xl mt-1 w-full font-bold '>{product.title}</h1>
+              <p className='text-s font-serif '>{product.description}</p>
               <p className='text-xl text-red-400 '>{product.category}</p>
-              <p className='text-sm font-bold text-sm'>{product.price}$</p>
+              <p className='text-sm font-bold '>{product.price}$</p>
               <p className='bg-green-500  rounded-3xl w-14 text-center'>{product.rating.rate}⭐</p>
               <div className='flex flex-row  '>
                 <p className='w-10 h-10 flex items-center justify-center text-2xl border border-slate-400' onClick={decProduct}> -</p>

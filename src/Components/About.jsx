@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function About() {
   const [activeTab, setActiveTab] = useState('description');
@@ -6,10 +6,26 @@ function About() {
   const [newFeedback, setNewFeedback] = useState('');
   const [rating, setRating] = useState(0);
 
+
+  const saveFeedbackToLocalStorage = (feedbackData) => {
+    //localStorage.setItem('productFeedback', JSON.stringify(feedbackData));
+    console.log("a")
+  };
+
+  // Load feedback from local storage when component mounts
+  useEffect(() => {
+    const storedFeedback = localStorage.getItem('productFeedback');
+    if (storedFeedback) {
+      setFeedback(JSON.parse(storedFeedback));
+    }
+  }, []);
+
   const handleFeedbackSubmit = (e) => {
     e.preventDefault();
     if (newFeedback.trim() && rating > 0) {
-      setFeedback([{ text: newFeedback, rating }, ...feedback]);
+      const updatedFeedback = [{ text: newFeedback, rating }, ...feedback];
+      setFeedback(updatedFeedback);
+      saveFeedbackToLocalStorage(updatedFeedback);
       setNewFeedback('');
       setRating(0);
     }
@@ -43,26 +59,37 @@ function About() {
       case 'rating':
         return (
           <div>
-            <h3 className="text-lg font-semibold mb-2">Customer Feedback:</h3>
+            <h3 className="text-lg font-semibold mb-2">Customer Feedback</h3>
+            <div className="mb-2 flex flex-row gap-8">
+                <label className="block mb-1 text-gray-700">Filter</label>
+                <select
+                  value={rating}
+                  onChange={(e) => setRating(parseInt(e.target.value))}
+                  className="border rounded p-1 w-24"
+                >
+                  <option value="Sort">Sort</option>
+                  <option value="Rating">Rating</option>
+                </select>
+              </div>
             <ul className="mb-4">
               {feedback.length === 0 ? (
-                <li className="text-gray-500">No feedback yet.</li>
+                <li className="text-gray-300">No feedback yet.</li>
               ) : (
                 feedback.map((item, index) => (
-                  <div className='flex flex-row gap-8'>
+                  <div key={index} className='flex flex-row gap-8 mb-2 border border-spacing-0 p-3 rounded-xl'>
                     <div className=''>
-                      <img src="src/assets/profile.png" alt="" className='w-12 h-12'/>
+                      <img src="src/assets/profile.png" alt="profile" className='w-12 h-12'/>
                     </div>
                     <div>
-                      <li key={index} className="text-gray-700">{item.text} </li>
+                      <li className="text-gray-700">{item.text} </li>
                       <span className="text-yellow-500">{'★'.repeat(item.rating)}</span>
                     </div>
                   </div>
                 ))
               )}
             </ul>
-            <h3 className="text-lg font-semibold mb-2">Leave Your Feedback:</h3>
-            <form onSubmit={handleFeedbackSubmit}>
+            <h3 className="text-lg font-semibold mb-2">Leave Your Feedback</h3>
+            <form onSubmit={handleFeedbackSubmit} className=' border border-black rounded-2xl p-3'>
               <textarea
                 value={newFeedback}
                 onChange={(e) => setNewFeedback(e.target.value)}
@@ -101,7 +128,7 @@ function About() {
   };
 
   return (
-    <div className="about-section p-6 max-w-4xl mx-auto">
+    <div className="about-section mt-36 p-6 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-4 text-center">About Product</h1>
       <div className="tabs flex justify-center space-x-4 mb-6">
         <button

@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function Products() {
   const [products, setProducts] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
       .then(json => {
-        const firstTwentyProducts = json.slice(0, 20);
-        setProducts(firstTwentyProducts);
+        // const firstTwentyProducts = json.slice(0, 20);
+        setProducts(json);
       })
       .catch(err => console.log(err));
   }, []);
 
-  function pTitle(t) {
-    console.log(t)
-    console.log("thek")
-    console.log(t.split(' ').slice(0, 2).join(' '))
-
-    return t.split(' ').slice(2).join(' ')
+  const productClick =(product)=>{
+    navigate(`/product/${product.id}`, {state: product})
   }
   return (
     <div className='flex flex-col '>
@@ -27,7 +25,9 @@ function Products() {
       </div>
       <div className='flex flex-row flex-wrap gap-7 mt-8 p-11'>
         {products.map((product) => (
-          <div key={product.id} className='flex flex-col border border-black rounded-2xl w-56 h-80 overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:cursor-pointer hover:shadow-lg hover:shadow-blue-500/50'>
+          <div key={product.id} className='flex flex-col border border-black rounded-2xl w-56 h-80 overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:cursor-pointer hover:shadow-lg hover:shadow-blue-500/50'
+            onClick={()=>productClick(product)}
+          >
             <div className='flex-shrink-0 mt-3'>
               <img src={product.image} className='w-full h-40 object-contain' />
             </div>

@@ -49,9 +49,15 @@ function About() {
                 <li className="text-gray-500">No feedback yet.</li>
               ) : (
                 feedback.map((item, index) => (
-                  <li key={index} className="text-gray-700">
-                    {item.text} - <span className="text-yellow-500">{'★'.repeat(item.rating)}</span>
-                  </li>
+                  <div className='flex flex-row gap-8'>
+                    <div className=''>
+                      <img src="src/assets/profile.png" alt="" className='w-12 h-12'/>
+                    </div>
+                    <div>
+                      <li key={index} className="text-gray-700">{item.text} </li>
+                      <span className="text-yellow-500">{'★'.repeat(item.rating)}</span>
+                    </div>
+                  </div>
                 ))
               )}
             </ul>

@@ -35,7 +35,8 @@ function Products() {
               <h1 className='text-sm mt-1 w-full truncate'>{product.title.split(' ').slice(2).join(' ')}</h1>
               <p className='text-xs text-red-400'>{product.category}</p>
               <p className='font-bold text-sm'>{product.price}$</p>
-              <div className='mt-3 w-full'>
+              <p className='bg-green-500  rounded-3xl w-14 text-center'>{product.rating.rate}⭐</p>
+              <div className='mt-2 mb-1 w-full'>
                 <button className='p-2 mt-auto w-full rounded-3xl font-bold text-white bg-slate-600'>Add To Cart</button>
               </div>
             </div>

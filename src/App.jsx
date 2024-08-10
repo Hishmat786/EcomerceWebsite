@@ -5,6 +5,7 @@ import './App.css'
 import Home from './Components/Home'
 import Header from './Components/Header'
 import Products from './Components/Products'
+import Footer from './Components/Footer'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header/>
       <Home/>
       <Products/>
+      <Footer/>
     </>
   )
 }

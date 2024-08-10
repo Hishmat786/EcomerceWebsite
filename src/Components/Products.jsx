@@ -27,7 +27,7 @@ function Products() {
       </div>
       <div className='flex flex-row flex-wrap gap-7 mt-8 p-11'>
         {products.map((product) => (
-          <div key={product.id} className='flex flex-col border border-black rounded-2xl w-56 h-80 overflow-hidden hover:shadow-lg hover:shadow-blue-500/50'>
+          <div key={product.id} className='flex flex-col border border-black rounded-2xl w-56 h-80 overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:cursor-pointer hover:shadow-lg hover:shadow-blue-500/50'>
             <div className='flex-shrink-0 mt-3'>
               <img src={product.image} className='w-full h-40 object-contain' />
             </div>
